@@ -38,3 +38,5 @@ The program uses **MediaPipe Pose** to detect human body landmarks. Specifically
 
 - **Incorrect Counting**: If the program counts incorrectly, ensure that your arms are visible and the camera is properly aligned. The detection depends on the clear visibility of the elbows and shoulders.
 - **Performance Issues**: If you experience performance issues, try adjusting the `min_detection_confidence` and `min_tracking_confidence` parameters in the `pose` initialization. Lowering these values may help with faster processing but may decrease accuracy.
+
+readme made with AI assistance
