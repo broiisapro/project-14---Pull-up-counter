@@ -1,17 +1,14 @@
 import cv2
 import mediapipe as mp
 
-# Initialize MediaPipe Pose detection module
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
-# OpenCV to capture the video
-cap = cv2.VideoCapture(0)  # Using the default camera (can use a video file here)
+cap = cv2.VideoCapture(0)
 
-# Initialize variables for counting
 pull_up_count = 0
-is_pulling_up = False  # To track the state (is the user at the top or not)
-has_reached_top = False  # To avoid counting multiple times during the ascent
+is_pulling_up = False
+has_reached_top = False
 
 def is_arms_at_top(landmarks):
     # Check if the arms are fully extended (indicating the top of a pull-up)
@@ -20,7 +17,6 @@ def is_arms_at_top(landmarks):
     left_elbow = landmarks.landmark[mp_pose.PoseLandmark.LEFT_ELBOW]
     right_elbow = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ELBOW]
     
-    # We assume that the top position is when the elbows are straight and shoulders are lower
     if (left_elbow.y < left_shoulder.y) and (right_elbow.y < right_shoulder.y):
         return True
     return False
